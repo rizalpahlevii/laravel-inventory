@@ -11,7 +11,6 @@
 <script src="{{asset('assets')}}/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- Morris.js charts -->
 <script src="{{asset('assets')}}/bower_components/raphael/raphael.min.js"></script>
-<script src="{{asset('assets')}}/bower_components/morris.js/morris.min.js"></script>
 <!-- Sparkline -->
 <script src="{{asset('assets')}}/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
 <!-- jvectormap -->
@@ -20,7 +19,6 @@
 <!-- jQuery Knob Chart -->
 <script src="{{asset('assets')}}/bower_components/jquery-knob/dist/jquery.knob.min.js"></script>
 <!-- daterangepicker -->
-<script src="{{asset('assets')}}/bower_components/moment/min/moment.min.js"></script>
 <script src="{{asset('assets')}}/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
 <!-- datepicker -->
 <script src="{{asset('assets')}}/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>

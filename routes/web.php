@@ -48,5 +48,7 @@ Route::group(['prefix' => 'peminjaman'], function () use ($router) {
     $router->get('/', 'PeminjamanController@index')->name('peminjaman.index');
     $router->get('/{id}/inventory', 'PeminjamanController@findInventaris')->name('peminjaman.find_inventaris');
     $router->get('/{id}/pegawai', 'PeminjamanController@findPegawai')->name('peminjaman.find_pegawai');
-    $router->post('/store', 'PeminjamanController@store')->name('peminjaman.store');
+    $router->post('/store/detailPinjam', 'PeminjamanController@storeDetail')->name('peminjaman.store_detail');
+    $router->post('/store/peminjaman', 'PeminjamanController@storePinjam')->name('peminjaman.store_pinjam');
+    $router->get('/delete/{id}', 'PeminjamanController@destroy')->name('peminjaman.destroy');
 });
