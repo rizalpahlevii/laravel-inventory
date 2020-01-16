@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->timestamps();
         });
         DB::table('users')->insert([
-            ['name' => 'Muhammad Rizal Pahlevi', 'email' => 'mrizalpahlevi@gmail.com', 'id_level' => 1, 'password' => '$2y$10$P1HvvcwYtC.xGFcQGPo6P.ThhZFmuuzHZRlqGjLv5m047X2eKfCA.']
+            ['name' => 'Muhammad Rizal Pahlevi', 'email' => 'mrizalpahlevi372@gmail.com', 'id_level' => 1, 'password' => '$2y$10$P1HvvcwYtC.xGFcQGPo6P.ThhZFmuuzHZRlqGjLv5m047X2eKfCA.']
         ]);
     }
 

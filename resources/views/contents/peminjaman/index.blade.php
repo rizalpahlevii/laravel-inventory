@@ -9,120 +9,90 @@
                     <h3 class="box-title">Input Peminjaman</h3>
                 </div>
                 <div class="box-body">
-                    <form id="form-inventaris">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="kode_peminjaman">Kode Peminjaman</label>
-                                            <input type="text" name="kode_peminjaman" id="kode_peminjaman" class="form-control" readonly value="{{$kode}}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="tanggal_pinjam">Tanggal Pinjam</label>
-                                            <input type="date" name="tanggal_pinjam" id="tanggal_pinjam" class="form-control" readonly value="{{date('Y-m-d')}}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <button style="cursor:pointer;margin-top:23px;" class="btn btn-primary" id="plh-inventaris" type="button">Pilih Inventaris</button>
-                                            <input type="hidden" name="id_inventaris" id="id_inventaris" class="form-control" readonly style="cursor:pointer;" placeholder="ID Inventaris">
-                                        </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="kode_peminjaman">Kode Peminjaman</label>
+                                        <input type="text" name="kode_peminjaman" id="kode_peminjaman" class="form-control" readonly value="{{$kode}}">
                                     </div>
                                 </div>
-                                <div class="row">
-                                    
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="nama_inventaris">Nama Inventaris</label>
-                                            <input type="text" name="nama_inventaris" id="nama_inventaris" class="form-control" readonly placeholder="Nama Inventaris" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="kode_inventaris">Kode Inventaris</label>
-                                            <input type="text" name="kode_inventaris" id="kode_inventaris" class="form-control" readonly placeholder="kode Inventaris" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="jenis">Nama Jenis</label>
-                                            <input type="text" name="jenis" id="jenis" class="form-control" readonly placeholder="Nama Jenis" required>
-                                        </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="tanggal_pinjam">Tanggal Pinjam</label>
+                                        <input type="date" name="tanggal_pinjam" id="tanggal_pinjam" class="form-control" readonly value="{{date('Y-m-d')}}">
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="ruang">Nama Ruang</label>
-                                            <input type="text" name="ruang" id="ruang" class="form-control" readonly placeholder="Nama Ruang" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="jumlah">Jumlah Inventaris</label>
-                                            <input type="text" name="jumlah" id="jumlah" class="form-control" readonly placeholder="Jumlah Inventaris" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="keterangan">Keterangan Inventaris</label>
-                                            <input type="text" name="keterangan" id="keterangan" class="form-control" readonly placeholder="keterangan Inventaris">
-                                        </div>
-                                    </div>
-                                </div><hr>
-                                <div class="row">
-                                    <div class="col-md-2">
-                                        <button class="btn btn-primary plh-pegawai btn-block" style="cursor:pointer;margin-top:23px;" type="button">Pilih Pegawai</button>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="nama_pegawai">Nama Pegawai</label>
-                                            <input type="text" name="nama_pegawai" id="nama_pegawai" class="form-control" readonly placeholder="Nama Pegawai" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label for="kode_pegawai">Kode Pegawai</label>
-                                            <input type="text" name="kode_pegawai" id="kode_pegawai" class="form-control" readonly placeholder="Kode Pegawai">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label for="nip">NIP</label>
-                                            <input type="text" name="nip" id="nip" class="form-control" readonly placeholder="Nama Pegawai">
-                                            <input type="hidden" name="id_pegawai" id="id_pegawai">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label for="jumlah_pinjam">Jumlah Pinjam</label>
-                                            <input type="number" name="jumlah_pinjam" id="jumlah_pinjam" class="form-control"  placeholder="Jumlah Pinjam" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label for="tanggal_kembali">Tanggal Kembali</label>
-                                            <input type="date" name="tanggal_kembali" id="tanggal_kembali" class="form-control"  placeholder="Tanggal Kembali">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label for="status_detail">Status</label>
-                                            <input type="text" name="status_detail" id="status_detail" class="form-control"  placeholder="Status Detail">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <button type="button" class="btn btn-block btn-primary btn-save" style="cursor:pointer;margin-top:23px;" >Simpan</button>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <button style="cursor:pointer;margin-top:23px;" class="btn btn-primary" id="plh-inventaris" type="button">Pilih Inventaris</button>
+                                        <input type="hidden" name="id_inventaris" id="id_inventaris" class="form-control" readonly style="cursor:pointer;" placeholder="ID Inventaris">
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="nama_inventaris">Nama Inventaris</label>
+                                        <input type="text" name="nama_inventaris" id="nama_inventaris" class="form-control" readonly placeholder="Nama Inventaris" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="kode_inventaris">Kode Inventaris</label>
+                                        <input type="text" name="kode_inventaris" id="kode_inventaris" class="form-control" readonly placeholder="kode Inventaris" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="jenis">Nama Jenis</label>
+                                        <input type="text" name="jenis" id="jenis" class="form-control" readonly placeholder="Nama Jenis" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="ruang">Nama Ruang</label>
+                                        <input type="text" name="ruang" id="ruang" class="form-control" readonly placeholder="Nama Ruang" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="jumlah">Jumlah Inventaris</label>
+                                        <input type="text" name="jumlah" id="jumlah" class="form-control" readonly placeholder="Jumlah Inventaris" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="keterangan">Keterangan Inventaris</label>
+                                        <input type="text" name="keterangan" id="keterangan" class="form-control" readonly placeholder="keterangan Inventaris">
+                                    </div>
+                                </div>
+                            </div><hr>
+                            
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="jumlah_pinjam">Jumlah Pinjam</label>
+                                        <input type="number" name="jumlah_pinjam" id="jumlah_pinjam" class="form-control"  placeholder="Jumlah Pinjam" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="status_detail">Status</label>
+                                        <input type="text" name="status_detail" id="status_detail" class="form-control"  placeholder="Status Detail">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <a href="#" class="btn btn-block btn-primary btn-save" style="cursor:pointer;margin-top:23px;">Simpan</a>
+                                    
+                                </div>
+                            </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -160,6 +130,44 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <button class="btn btn-primary plh-pegawai btn-block" style="cursor:pointer;margin-top:23px;" type="button">Pilih Pegawai</button>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="nama_pegawai">Nama Pegawai</label>
+                                <input type="text" name="nama_pegawai" id="nama_pegawai" class="form-control" readonly placeholder="Nama Pegawai" required>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="kode_pegawai">Kode Pegawai</label>
+                                <input type="text" name="kode_pegawai" id="kode_pegawai" class="form-control" readonly placeholder="Kode Pegawai">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="nip">NIP</label>
+                                <input type="text" name="nip" id="nip" class="form-control" readonly placeholder="Nama Pegawai">
+                                <input type="hidden" name="id_pegawai" id="id_pegawai">
+                            </div>
+                        </div>
+                    </div>  
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="tanggal_kembali">Tanggal Kembali</label>
+                                <input type="date" name="tanggal_kembali" id="tanggal_kembali" class="form-control"  placeholder="Tanggal Kembali" min="{{date('Y-m-d')}}">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <button type="button" class="btn btn-block btn-primary btn-save-pmj" style="cursor:pointer;margin-top:23px;" >Simpan</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -315,7 +323,6 @@
             });
             $('.btn-save').click(function(){
                 var formData = $('#form-pmj').serialize();
-                console.log(formData);
                 $.ajax({
                     url : "{{request()->segment(1)}}/store/detailPinjam",
                     method : "POST",
@@ -429,6 +436,63 @@
                         }
                     }); 
                 }
+            });
+            $('.btn-save-pmj').click(function(){
+                var formData = $('#form-pmj').serialize();
+                $.ajax({
+                    url : "{{request()->segment(1)}}/store/peminjaman",
+                    method : "POST",
+                    dataType : "json",
+                    data  : formData,
+                    // error:(xhr,status,error)=>{
+                    //     alert(xhr.responseText);
+                    // },
+                    success:(response)=>{
+                        if(response=="berhasil"){
+                            iziToast.success({
+                                title : 'Success',
+                                message : 'Peminjaman Berhasil disimpan!',
+                                progressBarColor: 'rgb(0, 255, 184)',
+                                color : 'blue',
+                                position : 'topRight',
+                                timeOut : 3000,
+                                closeOnClick : true,
+                                onClosed: function(){
+                                    location.reload();
+                                },
+                                onClosing:function(instance,toast,closedBy){
+                                    location.reload();
+                                },
+                                buttons : [
+                                    ['<button>Ok</button>', function (instance, toast) {
+                                        location.reload();
+                                    },true],
+                                ]
+                            });
+                        }else{
+                            iziToast.error({
+                                title : 'Error',
+                                message : 'Peminjaman Gagal disimpan!',
+                                progressBarColor: 'rgb(0, 255, 184)',
+                                color : 'blue',
+                                timeOut : 3000,
+                                position : 'topRight',
+                                closeOnClick : true,
+                                onClosed: function(){
+                                    location.reload();
+                                },
+                                onClosing:function(instance,toast,closedBy){
+                                    location.reload();
+                                },
+                                buttons : [
+                                    ['<button>Ok</button>', function (instance, toast) {
+                                        location.reload();
+                                    },true],
+                                ]
+                            });
+                        }
+                    }
+                });
             });
         });
     </script>

@@ -21,4 +21,12 @@ class Peminjaman extends Model
         }
         return $number;
     }
+    public function detail_pinjam()
+    {
+        return $this->hasMany(Detail_pinjam::class, 'id_peminjaman', 'id');
+    }
+    public function pegawai()
+    {
+        return $this->belongsTo(Pegawai::class, 'id_pegawai', 'id');
+    }
 }

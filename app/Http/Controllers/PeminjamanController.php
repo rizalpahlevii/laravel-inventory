@@ -7,13 +7,15 @@ use App\Inventaris;
 use App\Pegawai;
 use App\Peminjaman;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class PeminjamanController extends Controller
 {
     public function index()
     {
         $peminjaman = Peminjaman::orderBy('id', 'DESC')->first();
-        if ($peminjaman->count() > 0) {
+        if ($peminjaman) {
             $getLatestPeminjamanId = $peminjaman->id + 1;
         } else {
             $getLatestPeminjamanId = 1;
@@ -36,34 +38,61 @@ class PeminjamanController extends Controller
     public function storeDetail(Request $request)
     {
         $peminjaman = Peminjaman::orderBy('id', 'DESC')->first();
-        if ($peminjaman->count() > 0) {
+        if ($peminjaman) {
             $getLatestPeminjamanId = $peminjaman->id + 1;
         } else {
             $getLatestPeminjamanId = 1;
         }
 
-
-        $inventaris = Inventaris::find($request->id_inventaris);
-        $detail = new Detail_pinjam();
-
-        $detail->id_peminjaman = $getLatestPeminjamanId;
-        $detail->id_inventaris = $request->id_inventaris;
-        $detail->jumlah = $request->jumlah_pinjam;
-        $detail->kondisi = $inventaris->kondisi;
-        $detail->status = $request->status_detail;
-        if ($detail->save()) {
-            $response = "berhasil";
-        } else {
-            $response = "gagal";
+        DB::beginTransaction();
+        try {
+            $inventaris = Inventaris::find($request->id_inventaris);
+            $detail = new Detail_pinjam();
+            $detail->id_peminjaman = $getLatestPeminjamanId;
+            $detail->id_inventaris = $request->id_inventaris;
+            $detail->jumlah = $request->jumlah_pinjam;
+            $detail->kondisi = $inventaris->kondisi;
+            $detail->status = $request->status_detail;
+            $detail->save();
+            $inventaris->jumlah -= $request->jumlah_pinjam;
+            $inventaris->save();
+            DB::commit();
+            $status = "berhasil";
+        } catch (\Exception $e) {
+            DB::rollBack();
+            $status = "gagal";
         }
-        return response()->json($response);
+        return response()->json($status);
     }
     public function destroy($id)
     {
         $detail = Detail_pinjam::find($id);
+        $inventaris = Inventaris::find($detail->id_inventaris);
+        $jumlah = $detail->jumlah;
         if ($detail->delete()) {
+            $inventaris->jumlah += $jumlah;
+            $inventaris->save();
             $status = "berhasil";
         } else {
+            $status = "gagal";
+        }
+        return response()->json($status);
+    }
+    public function storePinjam(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            $peminjaman = new Peminjaman();
+            $peminjaman->kode_peminjaman = $request->kode_peminjaman;
+            $peminjaman->tanggal_pinjam = date('Y-m-d');
+            $peminjaman->tanggal_kembali = $request->tanggal_kembali;
+            $peminjaman->status = 'Dipinjam';
+            $peminjaman->id_pegawai = $request->id_pegawai;
+            $peminjaman->save();
+            DB::commit();
+            $status = "berhasil";
+        } catch (\Exception $e) {
+            DB::rollBack();
             $status = "gagal";
         }
         return response()->json($status);
