@@ -53,6 +53,7 @@ Route::group(['middleware' => 'cekLogin'], function () use ($router) {
     Route::group(['prefix' => 'pengembalian'], function () use ($router) {
         $router->get('/', 'PengembalianController@index')->name('pengembalian.index');
         $router->get('/{id}/detail', 'PengembalianController@detail')->name('pengembalian.detail');
+        $router->get('/{id}/kembalikan', 'PengembalianController@kembalikan')->name('pengembalian.kembalikan');
     });
     Route::group(['prefix' => 'petugas'], function () use ($router) {
         $router->get('/', 'PetugasController@index')->name('petugas.index');
@@ -60,5 +61,8 @@ Route::group(['middleware' => 'cekLogin'], function () use ($router) {
         $router->get('/{id}', 'PetugasController@find')->name('petugas.find');
         $router->post('/update', 'PetugasController@update')->name('petugas.update');
         $router->get('/delete/{id}', 'PetugasController@delete')->name('petugas.delete');
+    });
+    Route::group(['prefix' => 'laporan'], function () use ($router) {
+        $router->get('/', 'LaporanController@index')->name('laporan.index');
     });
 });

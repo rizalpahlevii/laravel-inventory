@@ -39,10 +39,10 @@
                                     $jmlInven = count($row->detail_pinjam);
                                 @endphp
                                 <td>{{ $jmlInven }}</td>
-                                <td>{{ $row->pegawai->name }}</td>
+                                <td>{{ $row->pegawai->nama_pegawai }}</td>
                                 <td>
                                     <a href="{{route('pengembalian.detail',$row->id)}}" class="btn btn-info">Detail</a>
-                                    <a href="#" class="btn btn-warning btn-edit" data-coba="{{$row->id}}">Edit</a>
+                                    <a href="{{route('pengembalian.kembalikan',$row->id)}}" class="btn btn-warning" data-coba="{{$row->id}}">Kembalikan</a>
                                 </td>
                             </tr>
                         @endforeach

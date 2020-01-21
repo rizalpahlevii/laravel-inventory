@@ -23,6 +23,7 @@
         <li class="{{ set_active(['inventaris.index']) }}"><a href="{{ route('inventaris.index') }}"><i class="fa fa-laptop"></i> <span>Inventaris</span></a></li>
         <li class="{{ set_active(['peminjaman.index']) }}"><a href="{{ route('peminjaman.index') }}"><i class="fa fa-navicon"></i> <span>Peminjaman</span></a></li>
         <li class="{{ set_active(['pengembalian.index','pengembalian.detail']) }}"><a href="{{ route('pengembalian.index') }}"><i class="fa fa-reply"></i> <span>Pengembalian</span></a></li>
+        <li class="{{ set_active(['laporan.index']) }}"><a href="{{ route('laporan.index') }}"><i class="fa fa-tasks"></i> <span>Laporan</span></a></li>
         
       </ul>
     </section>
