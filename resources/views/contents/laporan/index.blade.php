@@ -41,7 +41,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-5">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="tahun">Tahun</label>
                                         <select name="tahun" id="tahun" class="form-control">
@@ -52,8 +52,9 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-3">
                                     <button type="submit" class="btn btn-primary"  style="margin-top: 23px;">Filter</button>
+                                    <a href="#" class="btn btn-warning" id="print-laporan" style="margin-top: 23px;">Print</a>
                                 </div>
                             </div>
                         </form>
@@ -127,9 +128,16 @@
     <script src="{{ asset('assets') }}/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
     <script src="{{ asset('assets') }}/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
     <script>
-        $(document).ready(()=>{
-            $('#example1').dataTable();
-            
+        $(document).ready(function(){
+            $(document).on('click','#print-laporan',function(){
+                const bulan = $('#bulan').val();
+                const tahun = $('#tahun').val();
+                if(bulan ==  "" || tahun == ""){
+                    alert('Filter masih kosong');
+                }else{
+                    window.open("{{ route('laporan.print') }}" + `?bulan=${bulan}&tahun=${tahun}`);
+                }
+            });
         });
     </script>
 @endpush

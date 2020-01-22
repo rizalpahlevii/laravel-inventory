@@ -21,4 +21,16 @@ class LaporanController extends Controller
         $laporan = $laporan->get();
         return view('contents.laporan.index', compact('laporan', 'years'));
     }
+    public function print()
+    {
+        $laporan = Peminjaman::with('detail_pinjam', 'pegawai', 'detail_pinjam.inventaris', 'detail_pinjam.inventaris.ruang', 'detail_pinjam.inventaris.jenis')->where('status', 'Dikembalikan');
+        if (isset($_GET['bulan'])) {
+            $laporan->whereMonth('created_at', $_GET['bulan']);
+        }
+        if (isset($_GET['tahun'])) {
+            $laporan->whereYear('created_at', $_GET['tahun']);
+        }
+        $laporan = $laporan->get();
+        return view('contents.laporan.print', compact('laporan'));
+    }
 }

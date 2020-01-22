@@ -64,5 +64,6 @@ Route::group(['middleware' => 'cekLogin'], function () use ($router) {
     });
     Route::group(['prefix' => 'laporan'], function () use ($router) {
         $router->get('/', 'LaporanController@index')->name('laporan.index');
+        $router->get('/print', 'LaporanController@print')->name('laporan.print');
     });
 });
