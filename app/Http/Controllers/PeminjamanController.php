@@ -44,20 +44,29 @@ class PeminjamanController extends Controller
             $getLatestPeminjamanId = 1;
         }
 
+        $detail_pinjam = Detail_pinjam::where('id_peminjaman', $getLatestPeminjamanId)->where('id_inventaris', $request->id_inventaris)->first();
+
         DB::beginTransaction();
         try {
-            $inventaris = Inventaris::find($request->id_inventaris);
-            $detail = new Detail_pinjam();
-            $detail->id_peminjaman = $getLatestPeminjamanId;
-            $detail->id_inventaris = $request->id_inventaris;
-            $detail->jumlah = $request->jumlah_pinjam;
-            $detail->kondisi = $inventaris->kondisi;
-            $detail->status = $request->status_detail;
-            $detail->save();
-            $inventaris->jumlah -= $request->jumlah_pinjam;
-            $inventaris->save();
+            if ($detail_pinjam) {
+                $det_pinjam = Detail_pinjam::find($detail_pinjam->id);
+                $det_pinjam->jumlah += $request->jumlah_pinjam;
+                $det_pinjam->save();
+                $status = "Berhasil menambah jumlah pinjam";
+            } else {
+                $inventaris = Inventaris::find($request->id_inventaris);
+                $detail = new Detail_pinjam();
+                $detail->id_peminjaman = $getLatestPeminjamanId;
+                $detail->id_inventaris = $request->id_inventaris;
+                $detail->jumlah = $request->jumlah_pinjam;
+                $detail->kondisi = $inventaris->kondisi;
+                $detail->status = $request->status_detail;
+                $detail->save();
+                $inventaris->jumlah -= $request->jumlah_pinjam;
+                $inventaris->save();
+                $status = "Berhasil menyimpan";
+            }
             DB::commit();
-            $status = "berhasil";
         } catch (\Exception $e) {
             DB::rollBack();
             $status = "gagal";

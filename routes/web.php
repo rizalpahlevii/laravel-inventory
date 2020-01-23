@@ -41,6 +41,7 @@ Route::group(['middleware' => 'cekLogin'], function () use ($router) {
     Route::group(['prefix' => 'inventaris'], function () use ($router) {
         $router->get('/', 'InventarisController@index')->name('inventaris.index');
         $router->post('/store', 'InventarisController@store')->name('inventaris.store');
+        $router->post('/delete', 'InventarisController@delete')->name('inventaris.delete');
     });
     Route::group(['prefix' => 'peminjaman'], function () use ($router) {
         $router->get('/', 'PeminjamanController@index')->name('peminjaman.index');

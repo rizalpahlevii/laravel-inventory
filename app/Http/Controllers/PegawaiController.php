@@ -31,6 +31,7 @@ class PegawaiController extends Controller
     }
     public function update(Request $request)
     {
+
         $pegawai = Pegawai::find($request->id);
         $pegawai->nama_pegawai = $request->nama_pegawai;
         $pegawai->alamat = $request->alamat;

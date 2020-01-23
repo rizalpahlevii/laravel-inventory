@@ -17,6 +17,16 @@ class InventarisController extends Controller
         $inventaris = Inventaris::with('ruang', 'jenis', 'petugas')->get();
         return view('contents.inventaris.index', compact('ruang', 'jenis', 'inventaris'));
     }
+    public function delete(Request $request)
+    {
+        $inventaris = Inventaris::find($request->id);
+        if ($inventaris->delete()) {
+            $status = "berhasil";
+        } else {
+            $status = "gagal";
+        }
+        return response()->json($status);
+    }
     public function store(Request $request)
     {
         $inventaris = new Inventaris();

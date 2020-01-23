@@ -87,7 +87,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <a href="#" class="btn btn-block btn-primary btn-save" style="cursor:pointer;margin-top:23px;">Simpan</a>
+                                    <a href="#" class="btn btn-block btn-primary btn-save" style="cursor:pointer;margin-top:23px;"><i class="fa fa-spinner fa-spin" style="display:none;"></i> Simpan</a>
                                     
                                 </div>
                             </div>
@@ -164,7 +164,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <button type="button" class="btn btn-block btn-primary btn-save-pmj" style="cursor:pointer;margin-top:23px;" >Simpan</button>
+                                <button type="button" class="btn btn-block btn-primary btn-save-pmj" style="cursor:pointer;margin-top:23px;" ><i class="fa fa-spinner fa-spin faspin2" style="display:none;"></i> Simpan</button>
                             </div>
                         </div>
                     </div>
@@ -328,11 +328,16 @@
                     method : "POST",
                     dataType : "json",
                     data : formData,
+                    beforeSend:()=>{
+                        $('.fa-spin').show();
+                        $('.btn-save').css({"display":"block","cursor":"no-drop"});
+                        $('.btn-save').attr("disabled","");
+                    },
                     success:(response)=>{
-                        if(response="berhasil"){
+                        if(response!="gagal"){
                             iziToast.success({
                                 title : 'Success',
-                                message : 'Berhasil disimpan!',
+                                message : response,
                                 progressBarColor: 'rgb(0, 255, 184)',
                                 color : 'blue',
                                 position : 'topRight',
@@ -447,6 +452,11 @@
                     // error:(xhr,status,error)=>{
                     //     alert(xhr.responseText);
                     // },
+                    beforeSend:()=>{
+                        $('.faspin2').show();
+                        $('.btn-save-pmj').css({"display":"block","cursor":"no-drop"});
+                        $('.btn-save-pmj').attr("disabled","");
+                    },
                     success:(response)=>{
                         if(response=="berhasil"){
                             iziToast.success({

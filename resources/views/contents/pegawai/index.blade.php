@@ -38,7 +38,7 @@
                                 <td>{{ $row->alamat }}</td>
                                 <td>
                                     <a href="#" class="btn btn-warning btn-edit" data-coba="{{$row->id}}">Edit</a>
-                                    <a href="{{route('ruang.delete',$row->id)}}" class="btn btn-danger btn-hapus" onclick="return confirm('yakin ingin menghapus ?')">Hapus</a>
+                                    <a href="{{route('pegawai.delete',$row->id)}}" class="btn btn-danger btn-hapus" onclick="return confirm('yakin ingin menghapus ?')">Hapus</a>
                                 </td>
                             </tr>
                         @endforeach
@@ -69,21 +69,18 @@
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <input type="hidden" name="id" id="id">
                             <label for="nama_pegawai">Nama Pegawai</label>
                             <input type="text" class="form-control" name="nama_pegawai" id="nama_pegawai" required>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <input type="hidden" name="id" id="id">
                             <label for="nip">NIP</label>
                             <input type="text" class="form-control" name="nip" id="nip" required>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <input type="hidden" name="id" id="id">
                             <label for="alamat">Alamat</label>
                             <textarea name="alamat" id="alamat" cols="20" rows="10" class="form-control"></textarea>
                         </div>
@@ -115,7 +112,7 @@
             });
             $(document).on('click','.btn-edit',function(){
                 const kode = $(this).data('coba');
-                $('#form-ruang').attr('action',`{{route('pegawai.update')}}`);
+                $('#form-pegawai').attr('action',`{{route('pegawai.update')}}`);
                 
                 $.ajax({
                     url : "{{request()->segment(1)}}/"+kode,

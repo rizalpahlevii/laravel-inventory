@@ -9,7 +9,7 @@
                 <h3 class="box-title">Input Inventaris</h3>
             </div>
             <div class="box-body">
-                <form id="form-inventaris">
+                <form id="form-inventaris" method="POST">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -63,7 +63,7 @@
                                 <textarea name="keterangan" id="keterangan" cols="10" rows="10" class="form-control"></textarea>
                             </div>
                             <div class="form-group">
-                                <input type="button" class="btn btn-primary btn-block btn-save" value="Simpan">
+                                <button type="button" class="btn btn-primary btn-block btn-save"><i class="fa fa-spinner fa-spin" style="display:none;"></i> Simpan</button>
                             </div>
                         </div>
                     </div>
@@ -92,6 +92,7 @@
                             <th>Nama Ruang</th>
                             <th>Kode Inventaris</th>
                             <th>Nama Petugas</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -107,6 +108,9 @@
                                 <td>{{$inventari->ruang->nama_ruang}}</td>
                                 <td>{{$inventari->kode_inventaris}}</td>
                                 <td>{{$inventari->petugas->name}}</td>
+                                <td>
+                                    <a href="#" class="btn btn-warning btn-edit" data-kode="{{$inventari->id}}"><i class="fa fa-trash"></i></a>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -124,6 +128,61 @@
     <script>
         $(document).ready(()=>{
             $('#example1').dataTable();
+            $(document).on('click','.btn-edit',function(){
+                const cfm = confirm('Yakin ingin menghapus detail pinjam ini ?');
+                if(cfm){
+                    $.ajax({
+                        url : "{{ route('inventaris.delete') }}",
+                        method : "POST",
+                        data : {id: $(this).data('kode')},
+                        success:(response)=>{
+                            if(response="berhasil"){
+                                iziToast.success({
+                                    title : 'Success',
+                                    message : 'Inventaris berhasil dihapus!',
+                                    progressBarColor: 'rgb(0, 255, 184)',
+                                    color : 'blue',
+                                    position : 'topRight',
+                                    closeOnClick : true,
+                                    onClosed: function(){
+                                        location.reload();
+                                    },
+                                    onClosing:function(instance,toast,closedBy){
+                                        location.reload();
+                                    },
+                                    buttons : [
+                                        ['<button>Ok</button>', function (instance, toast) {
+                                            location.reload();
+                                        },true],
+                                    ]
+                                });
+                            }else{
+                                iziToast.error({
+                                    title : 'Error',
+                                    message : 'Inventaris gagal dihapus!',
+                                    progressBarColor: 'rgb(0, 255, 184)',
+                                    color : 'blue',
+                                    position : 'topRight',
+                                    closeOnClick : true,
+                                    onClosed: function(){
+                                        location.reload();
+                                    },
+                                    onClosing:function(instance,toast,closedBy){
+                                        location.reload();
+                                    },
+                                    buttons : [
+                                        ['<button>Ok</button>', function (instance, toast) {
+                                            location.reload();
+                                        },true],
+                                    ]
+                                });
+                            }
+                        }
+                    });
+                }else{
+                    return false;
+                }
+            })
             $('.btn-save').click(function(){
                 const formData = $('#form-inventaris').serialize();
                 $.ajax({
@@ -131,6 +190,11 @@
                     method : "POST",
                     dataType : "json",
                     data : formData,
+                    beforeSend:()=>{
+                        $('.fa-spin').show();
+                        $('.btn-save').css({"display":"block","cursor":"no-drop"});
+                        $('.btn-save').attr("disabled","");
+                    },
                     success:(response)=>{
                         if(response="berhasil"){
                             iziToast.success({
